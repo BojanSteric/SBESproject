@@ -12,14 +12,27 @@ namespace Client
         static void Main(string[] args)
         {
             NetTcpBinding binding = new NetTcpBinding();
-            string address = "net.tcp://localhost:9999/Service";
+            string address = "net.tcp://localhost:8001/Service";
 
             Console.WriteLine("uspesno pokrenut");
 
-            EndpointAddress endpointAddress = new EndpointAddress(new Uri(address), EndpointIdentity.CreateUpnIdentity("wcfServer")); //nemam pojma sta je ovo
+            //nemam pojma sta je ovo
+            EndpointAddress endpointAddress = new EndpointAddress(new Uri(address), EndpointIdentity.CreateUpnIdentity("wcfServer")); 
 
             using (ClientProxy proxy = new ClientProxy(binding, endpointAddress))
             {
+                
+                Console.WriteLine("izaberite bazu koju zelite da koristite:");
+                proxy.loadAllDatabases();       //ucitaj i ispisi sve fajlove koji postoje u bazi
+
+
+                bool loaded = false;    //ovo je za ponavljanje odabira baze ako korisnik unese nesto sto ne postoji
+                do
+                {
+                    loaded = proxy.loadDb(Console.ReadLine());
+                } while (!loaded);
+                
+
                 //pozivi funkcija, cisto da vidimo dal rade
                 proxy.addData(10, "pomoravlje", "pozarevac", 1999, 23.3);
                 Console.WriteLine();

@@ -12,15 +12,11 @@ namespace Service
     {
         static void Main(string[] args)
         {
-            NetTcpBinding binding = new NetTcpBinding();
-            string address = "net.tcp://localhost:9999/Service";
-
-            //load database 
-            ServiceDBManager sm = new ServiceDBManager();
-            sm.loadDb();
+            //NetTcpBinding binding = new NetTcpBinding();
+            //string address = "net.tcp://localhost:8001/Service";
 
             ServiceHost host = new ServiceHost(typeof(ServiceDBManager));
-            host.AddServiceEndpoint(typeof(IDatabaseManagement), binding, address);
+           // host.AddServiceEndpoint(typeof(IDatabaseManagement), binding, address);
 
             host.Open();
             

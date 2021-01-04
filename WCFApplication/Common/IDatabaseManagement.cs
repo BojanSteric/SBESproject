@@ -46,6 +46,20 @@ namespace DataBase
         [FaultContract(typeof(DatabaseException))]
         List<City> maxConsumerForRegion(string region);
 
+        [OperationContract]
+        [FaultContract(typeof(DatabaseException))]
+        bool loadDb(string fileName);
+
+        [OperationContract]
+        string[] loadAllDatabases();
+
+        [OperationContract]
+        [FaultContract(typeof(DatabaseException))]
+        void UploadDatabase(string token, Dictionary<int, City> baza);
+
+        [OperationContract]
+        [FaultContract(typeof(DatabaseException))]
+        Dictionary<int, City> DownloadDatabase(string token);
 
     }
 }

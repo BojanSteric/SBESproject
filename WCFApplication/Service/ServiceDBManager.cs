@@ -13,18 +13,19 @@ namespace Service
     {
         public DataIO serializer = new DataIO();
         public static Dictionary<int, City> CitiesDB;
+        public string fileName = "";
 
         #region Modifier functions
         public void addData(int id, string region, string cityName, int year, double electricalEnergy)
         {
             if (!CitiesDB.ContainsKey(id))  //ako ne postoji podatak sa id-em, dodaj ga i apdejtuj bazu (fajl)
             {
-                CitiesDB.Add(id, new City(id, region, cityName, year, electricalEnergy));
-                updateDatabase();
+                CitiesDB.Add(id, new City(id, region.ToLower(), cityName.ToLower(), year, electricalEnergy));
+                updateDatabase(this.fileName);
             }
             else
             {
-                throw new FaultException<DatabaseException>(new DatabaseException(String.Format("Vec postoji podatak sa id-em {0}", id)));
+                throw new FaultException<DatabaseException>(new DatabaseException(String.Format("Error: vec postoji podatak sa id-em {0}", id)));
             }
 
         }
@@ -35,11 +36,11 @@ namespace Service
             if (CitiesDB.ContainsKey(id))
             {
                 CitiesDB[id] = city;
-                updateDatabase();
+                updateDatabase(fileName);
             }
             else
             {
-                throw new FaultException<DatabaseException>(new DatabaseException("Ne mozete da izmenite nesto sto ne postoji"));
+                throw new FaultException<DatabaseException>(new DatabaseException(String.Format("Error: podatak sa id-em {0} ne postoji", id)));
             }
         }
 
@@ -49,11 +50,11 @@ namespace Service
             if (CitiesDB.ContainsKey(id))
             {
                 CitiesDB.Remove(id);
-                updateDatabase();
+                updateDatabase(fileName);
             }
             else
             {
-                throw new FaultException<DatabaseException>(new DatabaseException("Ne postoji takav podatak u bazi"));
+                throw new FaultException<DatabaseException>(new DatabaseException(String.Format("Error: podatak sa id-em {0} ne postoji", id)));
             }
         }
         #endregion
@@ -61,51 +62,50 @@ namespace Service
         #region Admin functions
         public void archivateDatabase(string fileName)
         {
-            string archiveFile = String.Format("{0} {1}.txt", fileName, DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss"));  //formira string za arhivni fajl
+            string archiveFile = String.Format("{0} {1}", fileName, DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss"));  //formira string za arhivni fajl
 
             if (!Directory.Exists("Archive"))   //ako ne postoji archive folder, napravi ga
             {
                 Directory.CreateDirectory("Archive");
             }
 
-            if (File.Exists(fileName + ".txt"))     //ako postoji fajl koji zelimo da arhiviramo
+            if (File.Exists(fileName))     //ako postoji fajl koji zelimo da arhiviramo
             {
-                File.Copy(fileName + ".txt", Directory.GetCurrentDirectory() + "\\Archive\\" + archiveFile);    /*kopiraj zeljeni fajl u fajl za arhivnim 
+                File.Copy(fileName, Directory.GetCurrentDirectory() + "\\Archive\\" + archiveFile);    /*kopiraj zeljeni fajl u fajl za arhivnim 
                                                                                                                  * imenom i smesti ga u archive folder*/
             }
             else
             {
-                throw new FaultException<DatabaseException>(new DatabaseException("ne mozete arhivirati fajl koji ne postoji"));
+                throw new FaultException<DatabaseException>(new DatabaseException(String.Format("Error: fajl {0} ne postoji i ne moze se arhivirati", fileName)));
             }
         }
 
         //Ako fajl ne postoji kreiramo ga, u suprotnom no-no
         public void createDatabase(string fileName)
         {
-            if (!File.Exists(fileName + ".txt"))
+            if (!File.Exists(fileName))
             {
-                File.Create(fileName + ".txt");
+                File.Create(fileName);
             }
             else
             {
-                throw new FaultException<DatabaseException>(new DatabaseException(String.Format("baza sa imenom \"{0}\" vec postoji", fileName)));
+                throw new FaultException<DatabaseException>(new DatabaseException(String.Format("Error: baza sa imenom \"{0}\" vec postoji", fileName)));
             }
         }
 
         //Obrisi bazu ako postoji, ako ne postoji baci exception
         public void removeDatabase(string filename)
         {
-            if (File.Exists(filename + ".txt"))
+            if (File.Exists(filename))
             {
-                File.Delete(filename + ".txt");
+                File.Delete(filename);
             }
             else
             {
-                throw new FaultException<DatabaseException>(new DatabaseException("Ne postoji takav fajl u bazi"));
+                throw new FaultException<DatabaseException>(new DatabaseException(String.Format("Error: u bazi ne postoji fajl \"{0}\"", filename)));
             }
         }
         #endregion
-
 
         #region Reader functions
         public double averageForCity(string cityName)
@@ -126,7 +126,7 @@ namespace Service
             }
             catch (Exception e)
             {
-                throw new FaultException<DatabaseException>(new DatabaseException("U bazi ne postoji taj grad"));
+                throw new FaultException<DatabaseException>(new DatabaseException(String.Format("Error: U bazi ne postoji grad \"{0}\"", cityName)));
             }
 
             return result;
@@ -148,7 +148,7 @@ namespace Service
             }
             if (counter == 0)
             {
-                throw new FaultException<DatabaseException>(new DatabaseException("U bazi ne postoji ta regija"));
+                throw new FaultException<DatabaseException>(new DatabaseException(String.Format("Error: u bazi ne postoji regija \"{0}\"", region)));
             }
             else
             {
@@ -166,7 +166,7 @@ namespace Service
             {
                 double maximumForRegion = CitiesDB.Values.Where(c => c.Region.Equals(region.ToLower())).Max(c => c.ElectricalEnergy);
 
-                foreach (City city in CitiesDB.Values.Where(c => c.Region.Equals( region.ToLower() ) ) )  //ovaj lambda izraz je samo filter za regiju, skracuje listu
+                foreach (City city in CitiesDB.Values.Where(c => c.Region.Equals(region.ToLower())))  //ovaj lambda izraz je samo filter za regiju, skracuje listu
                 {
                     if (city.ElectricalEnergy == maximumForRegion)
                     {
@@ -176,7 +176,7 @@ namespace Service
             }
             catch (Exception e)     //ovde ulazimo ako pukne foreach, a puca ako Where( lambda izraz ) nadje 0 objekata
             {
-                throw new FaultException<DatabaseException>(new DatabaseException("U bazi ne postoji ta regija za max"));
+                throw new FaultException<DatabaseException>(new DatabaseException(String.Format("Error: u bazi ne postoji regija \"{0}\"", region)));
             }
 
             return max;
@@ -185,20 +185,58 @@ namespace Service
         #endregion
 
 
-        //slobodna funkcija za inicijalizaciju dictionary-a na serveru
-        public void loadDb()
+        //deljena funkcija, svi mogu da je koriste da ucitaju trazenu bazu
+        public bool loadDb(string fileName)
         {
-            CitiesDB = serializer.DeserializeFromTxt("cities.txt");
-            if (CitiesDB == null)
+            this.fileName = fileName;
+            CitiesDB = new Dictionary<int, City>();
+
+            if (File.Exists(fileName))
             {
-                CitiesDB = new Dictionary<int, City>();
+                CitiesDB = serializer.DeserializeFromTxt(fileName);
+                if (CitiesDB == null)
+                {
+                    CitiesDB = new Dictionary<int, City>();
+                }
+                return true;
+            }
+            else
+            {
+                throw new FaultException<DatabaseException>(new DatabaseException("Ne posoji ta baza"));
             }
         }
 
         //slobodna funkcija za apdejt fajla baze
-        public void updateDatabase()
+        public void updateDatabase(string fileName)
         {
-            serializer.SerializeToTxt(CitiesDB, "cities.txt");
+            serializer.SerializeToTxt(CitiesDB, fileName);
+        }
+
+
+        //ucitavamo sve txt fajlove i saljemo ih klijentu
+        public string[] loadAllDatabases()
+        {
+            string[] files = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.txt");  //svi txt fajlovi u debug folderu sa sve lokacijom
+
+            for (int i = 0; i < files.Count(); i++) {           //iseci lokaciju fajla, samo pokazi ime i ekstenziju
+                string[] temp = files[i].Split('\\');
+                files[i] = temp.Last();
+            }
+
+            return files;
+        }
+
+        public void UploadDatabase(string token, Dictionary<int, City> baza)
+        {
+            foreach (KeyValuePair<int, City> kvp in baza)
+            {
+                CitiesDB[kvp.Key] = kvp.Value;      // u slucaju da postoji azurirace se, a ako ne postoji dodace se
+            }
+        }
+
+        public Dictionary<int, City> DownloadDatabase(string token)
+        {
+            return CitiesDB;
         }
     }
 }

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase", "Common\DataBase.csproj", "{667AB615-50A5-41B3-9FD6-7FFDFAB75AA6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Replikator", "Replikator\Replikator.csproj", "{4D7BBE75-0CFB-4BE9-BF8F-63068CD0C8B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{667AB615-50A5-41B3-9FD6-7FFDFAB75AA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{667AB615-50A5-41B3-9FD6-7FFDFAB75AA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{667AB615-50A5-41B3-9FD6-7FFDFAB75AA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D7BBE75-0CFB-4BE9-BF8F-63068CD0C8B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D7BBE75-0CFB-4BE9-BF8F-63068CD0C8B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D7BBE75-0CFB-4BE9-BF8F-63068CD0C8B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D7BBE75-0CFB-4BE9-BF8F-63068CD0C8B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

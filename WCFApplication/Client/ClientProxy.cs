@@ -185,5 +185,53 @@ namespace Client
 
         #endregion
 
+        public bool loadDb(string fileName)
+        {
+            try
+            {
+                factory.loadDb(fileName);
+                return true;
+            }
+            catch (FaultException<DatabaseException> e)
+            {
+                Console.WriteLine(e.Detail.Message);
+                return false;
+            }
+            catch(Exception e) 
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+        public string[] loadAllDatabases()
+        {
+            string[] files;
+            try
+            {
+                files = factory.loadAllDatabases();
+                foreach (string file in files)
+                {
+                    Console.WriteLine(file);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);  
+            }
+            
+            return null;
+        }
+
+        //please dont implement this lmao rofl lol
+        public void UploadDatabase(string token, Dictionary<int, City> baza)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Dictionary<int, City> DownloadDatabase(string token)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
