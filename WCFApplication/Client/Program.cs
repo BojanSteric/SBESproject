@@ -34,9 +34,9 @@ namespace Client
                 
 
                 //pozivi funkcija, cisto da vidimo dal rade
-                proxy.addData(10, "pomoravlje", "pozarevac", 1999, 23.3);
+                proxy.addData(1011, "pomoravlje", "pozarevac", 1999, 23.3);
                 Console.WriteLine();
-                proxy.addData(15, "podunavlje", "pozarevac", 1800, 10);
+                proxy.addData(222, "podunavlje", "smederevo", 1800, 10);
                 Console.WriteLine();
                 proxy.averageForCity("pozarevac");
                 Console.WriteLine();
@@ -56,10 +56,10 @@ namespace Client
                 Console.WriteLine();
                 proxy.removeData(15);
                 Console.WriteLine();
-                proxy.createDatabase("moj otac");
+                proxy.createDatabase("moj otac.txt");
                 Console.WriteLine();
                 //proxy.removeDatabase("moj otac");
-                proxy.archivateDatabase("cities");
+                proxy.archivateDatabase("cities.txt");
                 Console.WriteLine();
                 proxy.archivateDatabase("asdasd");
             }

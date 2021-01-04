@@ -74,7 +74,7 @@ namespace Replikator
                             //    if (stanjeServisaA.Equals(EStanjeServera.Primarni))
                             //    {
                                     baza = databasePrimary.DownloadDatabase("1");
-                                    databaseSecondary.UploadDatabase("2", baza);
+                                    //databaseSecondary.UploadDatabase("2", baza);
                                 //}
                                 //else if (stanjeServisaB.Equals(EStanjeServera.Primarni))
                                 //{
@@ -89,7 +89,7 @@ namespace Replikator
                         {
                             Console.WriteLine(e.Detail.Message);
                         }
-                        Thread.Sleep(2000);
+                        Thread.Sleep(3000);
                     }
                     catch (Exception e)
                     {
