@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Security.Principal;
 using System.ServiceModel;
 using System.Text;
 using System.Threading;
@@ -15,10 +17,28 @@ namespace Replikator
         {
             try
             {
-                //U app.config-u su podeseni endpointi
 
-                ChannelFactory<IDatabaseManagement> servicePrimary = new ChannelFactory<IDatabaseManagement>("ServiceA");
-                ChannelFactory<IDatabaseManagement> serviceSecondary = new ChannelFactory<IDatabaseManagement>("ServiceB");
+                NetTcpBinding binding1 = new NetTcpBinding();
+                NetTcpBinding binding2 = new NetTcpBinding();
+                string address1 = "net.tcp://localhost:8001/Service";
+                string address2 = "net.tcp://localhost:8002/Service";
+
+                binding1.Security.Mode = SecurityMode.Transport;
+                binding1.Security.Transport.ClientCredentialType = TcpClientCredentialType.Windows;
+                binding1.Security.Transport.ProtectionLevel =
+                System.Net.Security.ProtectionLevel.EncryptAndSign;
+
+                binding2.Security.Mode = SecurityMode.Transport;
+                binding2.Security.Transport.ClientCredentialType = TcpClientCredentialType.Windows;
+                binding2.Security.Transport.ProtectionLevel =
+                System.Net.Security.ProtectionLevel.EncryptAndSign;
+
+                EndpointAddress endpointAddress1 = new EndpointAddress(new Uri(address1));
+                EndpointAddress endpointAddress2 = new EndpointAddress(new Uri(address2));
+
+
+                ChannelFactory <IDatabaseManagement> servicePrimary = new ChannelFactory<IDatabaseManagement>(binding1, endpointAddress1);
+                ChannelFactory<IDatabaseManagement> serviceSecondary = new ChannelFactory<IDatabaseManagement>(binding2, endpointAddress2);
 
 
                 while (true)
@@ -73,8 +93,8 @@ namespace Replikator
                             //{
                             //    if (stanjeServisaA.Equals(EStanjeServera.Primarni))
                             //    {
-                                    baza = databasePrimary.DownloadDatabase("1");
-                                    //databaseSecondary.UploadDatabase("2", baza);
+                                    baza = databasePrimary.DownloadDatabase("token1");
+                                    databaseSecondary.UploadDatabase("2", baza);
                                 //}
                                 //else if (stanjeServisaB.Equals(EStanjeServera.Primarni))
                                 //{

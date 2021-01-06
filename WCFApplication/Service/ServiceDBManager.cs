@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 
 namespace Service
 {
+    [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
+
     public class ServiceDBManager : IDatabaseManagement
     {
         public DataIO serializer = new DataIO();
-        public static Dictionary<int, City> CitiesDB;
+        public static Dictionary<int, City> CitiesDB = new Dictionary<int, City>();
         public string fileName = "";
 
         #region Modifier functions
@@ -62,7 +64,7 @@ namespace Service
         #region Admin functions
         public void archivateDatabase(string fileName)
         {
-            string archiveFile = String.Format("{0} {1}", fileName, DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss"));  //formira string za arhivni fajl
+            string archiveFile = String.Format("{0} {1}.txt", fileName, DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss"));  //formira string za arhivni fajl
 
             if (!Directory.Exists("Archive"))   //ako ne postoji archive folder, napravi ga
             {
@@ -71,8 +73,8 @@ namespace Service
 
             if (File.Exists(fileName))     //ako postoji fajl koji zelimo da arhiviramo
             {
-                File.Copy(fileName, Directory.GetCurrentDirectory() + "\\Archive\\" + archiveFile);    /*kopiraj zeljeni fajl u fajl za arhivnim 
-                                                                                                                 * imenom i smesti ga u archive folder*/
+                File.Copy(fileName, Directory.GetCurrentDirectory() + "\\Archive\\" + archiveFile);    /*kopiraj zeljeni fajl u fajl za arhivnim */
+                File.Copy(fileName, Directory.GetCurrentDirectory() + " - Copy\\Archive\\" + archiveFile);    /* imenom i smesti ga u archive folder*/
             }
             else
             {
@@ -225,6 +227,8 @@ namespace Service
 
             return files;
         }
+
+
 
         public void UploadDatabase(string token, Dictionary<int, City> baza)
         {

@@ -16,8 +16,8 @@ namespace Client
 
             Console.WriteLine("uspesno pokrenut");
 
-            //nemam pojma sta je ovo
-            EndpointAddress endpointAddress = new EndpointAddress(new Uri(address), EndpointIdentity.CreateUpnIdentity("wcfServer")); 
+            //nemam pojma sta je ovo EndpointIdentity.CreateUpnIdentity("wcfServer")
+            EndpointAddress endpointAddress = new EndpointAddress(new Uri(address)); 
 
             using (ClientProxy proxy = new ClientProxy(binding, endpointAddress))
             {
@@ -59,6 +59,7 @@ namespace Client
                 proxy.createDatabase("moj otac.txt");
                 Console.WriteLine();
                 //proxy.removeDatabase("moj otac");
+
                 proxy.archivateDatabase("cities.txt");
                 Console.WriteLine();
                 proxy.archivateDatabase("asdasd");
