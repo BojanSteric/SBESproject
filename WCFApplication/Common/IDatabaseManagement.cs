@@ -13,39 +13,39 @@ namespace DataBase
     {
         [OperationContract]
         [FaultContract(typeof(DatabaseException))]
-        void createDatabase(string fileName, X509Certificate cer);
+        void createDatabase(string fileName, string uloga);
 
         [OperationContract]
         [FaultContract(typeof(DatabaseException))]
-        void removeData(int id);
+        void removeData(int id, string uloga);
 
         [OperationContract]
         [FaultContract(typeof(DatabaseException))]
-        void removeDatabase(string filename, X509Certificate cer);
+        void removeDatabase(string filename, string uloga);
 
         [OperationContract]
         [FaultContract(typeof(DatabaseException))]
-        void archivateDatabase(string fileName, X509Certificate cer);
+        void archivateDatabase(string fileName, string uloga);
 
         [OperationContract]
         [FaultContract(typeof(DatabaseException))]
-        void addData(int id, string region, string cityName, int year, double electricalEnergy);
+        void addData(int id, string region, string cityName, int year, double electricalEnergy, string uloga);
 
         [OperationContract]
         [FaultContract(typeof(DatabaseException))]
-        void modifyData(int id, City city);
+        void modifyData(int id, City city, string uloga);
 
         [OperationContract]
         [FaultContract(typeof(DatabaseException))]
-        double averageForRegion(string region);
+        double averageForRegion(string region, string uloga);
 
         [OperationContract]
         [FaultContract(typeof(DatabaseException))]
-        double averageForCity(string cityName);
+        double averageForCity(string cityName, string uloga);
 
         [OperationContract]
         [FaultContract(typeof(DatabaseException))]
-        List<City> maxConsumerForRegion(string region);
+        List<City> maxConsumerForRegion(string region, string uloga);
 
         [OperationContract]
         [FaultContract(typeof(DatabaseException))]

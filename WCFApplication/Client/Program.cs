@@ -34,45 +34,46 @@ namespace Client
                 //proxy.Credentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindBySubjectName, servCert);
                 Console.WriteLine("izaberite bazu koju zelite da koristite:");
                 proxy.loadAllDatabases();       //ucitaj i ispisi sve fajlove koji postoje u bazi
-
+                string uloga = proxy.Uloga;
 
                 bool loaded = false;    //ovo je za ponavljanje odabira baze ako korisnik unese nesto sto ne postoji
                 do
                 {
                     loaded = proxy.loadDb(Console.ReadLine());
                 } while (!loaded);
-                
+
+
 
                 //pozivi funkcija, cisto da vidimo dal rade
-                proxy.addData(1011, "pomoravlje", "pozarevac", 1999, 23.3);
+                proxy.addData(1011, "pomoravlje", "pozarevac", 1999, 23.3, uloga);
                 Console.WriteLine();
-                proxy.addData(222, "podunavlje", "smederevo", 1800, 10);
+                proxy.addData(222, "podunavlje", "smederevo", 1800, 10, uloga);
                 Console.WriteLine();
-                proxy.averageForCity("pozarevac");
+                proxy.averageForCity("pozarevac", uloga);
                 Console.WriteLine();
-                proxy.averageForRegion("ndzamena");
+                proxy.averageForRegion("ndzamena", uloga);
                 Console.WriteLine();
-                proxy.maxConsumerForRegion("pomoravlje");
+                proxy.maxConsumerForRegion("pomoravlje", uloga);
                 Console.WriteLine();
-                proxy.maxConsumerForRegion("podunavlje");
+                proxy.maxConsumerForRegion("podunavlje", uloga);
                 Console.WriteLine();
-                proxy.maxConsumerForRegion("asdasd");
+                proxy.maxConsumerForRegion("asdasd", uloga);
                 Console.WriteLine();
-                proxy.removeData(2);
+                proxy.removeData(2, uloga);
                 Console.WriteLine();
-                proxy.addData(1, "test", "lele", 2002, 33.1);
+                proxy.addData(1, "test", "lele", 2002, 33.1, uloga);
                 Console.WriteLine();
-                proxy.modifyData(1, new DataBase.City(1, "ziza", "kriza", 2020, 55.6));
+                proxy.modifyData(1, new DataBase.City(1, "ziza", "kriza", 2020, 55.6), uloga);
                 Console.WriteLine();
-                proxy.removeData(15);
+                proxy.removeData(15, uloga);
                 Console.WriteLine();
-                proxy.createDatabase("moj otac.txt", proxy.Credentials.ClientCertificate.Certificate);
+                proxy.createDatabase("moj otac.txt", uloga);
                 Console.WriteLine();
                 //proxy.removeDatabase("moj otac");
 
-                proxy.archivateDatabase("cities.txt", proxy.Credentials.ClientCertificate.Certificate);
+                proxy.archivateDatabase("cities.txt", uloga);
                 Console.WriteLine();
-                proxy.archivateDatabase("asdasd", proxy.Credentials.ClientCertificate.Certificate);
+                proxy.archivateDatabase("asdasd", uloga);
             }
             
             Console.ReadLine();

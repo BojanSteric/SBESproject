@@ -19,8 +19,14 @@ namespace Service
         public string fileName = "";
 
         #region Modifier functions
-        public void addData(int id, string region, string cityName, int year, double electricalEnergy)
+        public void addData(int id, string region, string cityName, int year, double electricalEnergy, string uloga)
         {
+            if (!uloga.Equals("writers"))
+            {
+                Console.WriteLine("Client tried operation he does not have permission for.");
+                return;
+            }
+
             if (!CitiesDB.ContainsKey(id))  //ako ne postoji podatak sa id-em, dodaj ga i apdejtuj bazu (fajl)
             {
                 CitiesDB.Add(id, new City(id, region.ToLower(), cityName.ToLower(), year, electricalEnergy));
@@ -34,8 +40,14 @@ namespace Service
         }
 
         //basically update object if it exists and update database, ovo moze bolje ako se stave parametri umesto celog objekta, ali radi posao
-        public void modifyData(int id, City city)
+        public void modifyData(int id, City city, string uloga)
         {
+            if (!uloga.Equals("writers"))
+            {
+                Console.WriteLine("Client tried operation he does not have permission for.");
+                return;
+            }
+
             if (CitiesDB.ContainsKey(id))
             {
                 CitiesDB[id] = city;
@@ -48,8 +60,14 @@ namespace Service
         }
 
         //obrisi podatak ako postoji i apdejtuj bazu
-        public void removeData(int id)
+        public void removeData(int id, string uloga)
         {
+            if (!uloga.Equals("writers"))
+            {
+                Console.WriteLine("Client tried operation he does not have permission for.");
+                return;
+            }
+
             if (CitiesDB.ContainsKey(id))
             {
                 CitiesDB.Remove(id);
@@ -63,8 +81,14 @@ namespace Service
         #endregion
 
         #region Admin functions
-        public void archivateDatabase(string fileName, X509Certificate cer)
+        public void archivateDatabase(string fileName, string uloga)
         {
+            if (!uloga.Equals("admins"))
+            {
+                Console.WriteLine("Client tried operation he does not have permission for.");
+                return;
+            }
+
             string archiveFile = String.Format("{0} {1}.txt", fileName, DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss"));  //formira string za arhivni fajl
 
             if (!Directory.Exists("Archive"))   //ako ne postoji archive folder, napravi ga
@@ -84,8 +108,14 @@ namespace Service
         }
 
         //Ako fajl ne postoji kreiramo ga, u suprotnom no-no
-        public void createDatabase(string fileName, X509Certificate cer)
+        public void createDatabase(string fileName, string uloga)
         {
+            if (!uloga.Equals("admins"))
+            {
+                Console.WriteLine("Client tried operation he does not have permission for.");
+                return;
+            }
+
             if (!File.Exists(fileName))
             {
                 File.Create(fileName);
@@ -97,8 +127,14 @@ namespace Service
         }
 
         //Obrisi bazu ako postoji, ako ne postoji baci exception
-        public void removeDatabase(string filename, X509Certificate cer)
+        public void removeDatabase(string filename, string uloga)
         {
+            if (!uloga.Equals("admins"))
+            {
+                Console.WriteLine("Client tried operation he does not have permission for.");
+                return;
+            }
+
             if (File.Exists(filename))
             {
                 File.Delete(filename);
@@ -111,8 +147,14 @@ namespace Service
         #endregion
 
         #region Reader functions
-        public double averageForCity(string cityName)
+        public double averageForCity(string cityName, string uloga)
         {
+            if (!uloga.Equals("readers"))
+            {
+                Console.WriteLine("Client tried operation he does not have permission for.");
+                return -1;
+            }
+
             double result = 0;
             int counter = 0;
             foreach (City city in CitiesDB.Values)
@@ -136,8 +178,14 @@ namespace Service
         }
 
         //averageForRegion je prakticno ista funkcija kao averageForCity, samo sto uzima regiju kao parametar
-        public double averageForRegion(string region)
+        public double averageForRegion(string region, string uloga)
         {
+            if (!uloga.Equals("readers"))
+            {
+                Console.WriteLine("Client tried operation he does not have permission for.");
+                return -1;
+            }
+
             double result = 0;
             int counter = 0;
 
@@ -161,10 +209,15 @@ namespace Service
             return result;
         }
 
-        public List<City> maxConsumerForRegion(string region)
+        public List<City> maxConsumerForRegion(string region, string uloga)
         {
+            
             List<City> max = new List<City>();
-
+            if (!uloga.Equals("readers"))
+            {
+                Console.WriteLine("Client tried operation he does not have permission for.");
+                return max;
+            }
             try
             {
                 double maximumForRegion = CitiesDB.Values.Where(c => c.Region.Equals(region.ToLower())).Max(c => c.ElectricalEnergy);
