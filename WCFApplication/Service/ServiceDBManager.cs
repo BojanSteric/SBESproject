@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,7 +63,7 @@ namespace Service
         #endregion
 
         #region Admin functions
-        public void archivateDatabase(string fileName)
+        public void archivateDatabase(string fileName, X509Certificate cer)
         {
             string archiveFile = String.Format("{0} {1}.txt", fileName, DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss"));  //formira string za arhivni fajl
 
@@ -83,7 +84,7 @@ namespace Service
         }
 
         //Ako fajl ne postoji kreiramo ga, u suprotnom no-no
-        public void createDatabase(string fileName)
+        public void createDatabase(string fileName, X509Certificate cer)
         {
             if (!File.Exists(fileName))
             {
@@ -96,7 +97,7 @@ namespace Service
         }
 
         //Obrisi bazu ako postoji, ako ne postoji baci exception
-        public void removeDatabase(string filename)
+        public void removeDatabase(string filename, X509Certificate cer)
         {
             if (File.Exists(filename))
             {

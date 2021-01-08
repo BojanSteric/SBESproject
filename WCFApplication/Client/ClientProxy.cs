@@ -2,9 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using CertificateManager;
+using System.ServiceModel.Security;
 
 namespace Client
 {
@@ -13,18 +16,25 @@ namespace Client
     {
         IDatabaseManagement factory;
 
-        public ClientProxy(NetTcpBinding binding, EndpointAddress address) : base(binding, address)
+        public ClientProxy(NetTcpBinding binding, EndpointAddress address, string servCert) : base(binding, address)
         {
             // Credentials.Windows.AllowedImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Impersonation;
+            this.Credentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindBySubjectName, servCert);
+
+            this.Credentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.Custom;
+            this.Credentials.ServiceCertificate.Authentication.CustomCertificateValidator = new Validator();
+            this.Credentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
+
             factory = this.CreateChannel();
         }
 
         #region Admin functions
-        public void archivateDatabase(string fileName)
+        public void archivateDatabase(string fileName, X509Certificate cer)
         {
+            
             try
             {
-                factory.archivateDatabase(fileName);
+                factory.archivateDatabase(fileName, cer);
                 Console.WriteLine("Baza {0} uspesno arhivirana", fileName);
             }
             catch (FaultException<DatabaseException> e)
@@ -36,11 +46,12 @@ namespace Client
                 Console.WriteLine(e.Message);
             }
         }
-        public void createDatabase(string fileName)
+        public void createDatabase(string fileName, X509Certificate cer)
         {
+            
             try
             {
-                factory.createDatabase(fileName);
+                factory.createDatabase(fileName, cer);
                 Console.WriteLine("Baza uspesno kreirana");
             }
             catch (FaultException<DatabaseException> e)
@@ -52,11 +63,12 @@ namespace Client
                 Console.WriteLine(e.Message);
             }
         }
-        public void removeDatabase(string filename)
+        public void removeDatabase(string filename, X509Certificate cer)
         {
+            
             try
             {
-                factory.removeDatabase(filename);
+                factory.removeDatabase(filename, cer);
                 Console.WriteLine("Baza sa imenom \"{0}\" uspesno obrisana", filename);
             }
             catch (FaultException<DatabaseException> e)
@@ -206,7 +218,7 @@ namespace Client
 
         public string[] loadAllDatabases()
         {
-            string[] files;
+            string[] files = new string[100];
             try
             {
                 files = factory.loadAllDatabases();

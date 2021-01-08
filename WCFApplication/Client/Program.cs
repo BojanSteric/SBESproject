@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using CertificateManager;
 
 namespace Client
 {
@@ -11,17 +13,25 @@ namespace Client
     {
         static void Main(string[] args)
         {
+            string servCert = "serverser";
+
             NetTcpBinding binding = new NetTcpBinding();
-            string address = "net.tcp://localhost:8001/Service";
+            string address = "net.tcp://localhost:9000/Service";
+            binding.Security.Mode = SecurityMode.Transport;
+
+            binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
+            X509Certificate2 srvCert = CertificateManager.CertificateManager.GetCertificateFromStorage(StoreName.TrustedPeople, StoreLocation.LocalMachine, servCert);
+            EndpointAddress endpointAddress = new EndpointAddress(new Uri(address), new X509CertificateEndpointIdentity(srvCert));
 
             Console.WriteLine("uspesno pokrenut");
 
             //nemam pojma sta je ovo EndpointIdentity.CreateUpnIdentity("wcfServer")
-            EndpointAddress endpointAddress = new EndpointAddress(new Uri(address)); 
+            //EndpointAddress endpointAddress = new EndpointAddress(new Uri(address)); 
 
-            using (ClientProxy proxy = new ClientProxy(binding, endpointAddress))
+            using (ClientProxy proxy = new ClientProxy(binding, endpointAddress, servCert))
             {
-                
+                //proxy.Credentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindBySubjectName, servCert);
+                //proxy.Credentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindBySubjectName, servCert);
                 Console.WriteLine("izaberite bazu koju zelite da koristite:");
                 proxy.loadAllDatabases();       //ucitaj i ispisi sve fajlove koji postoje u bazi
 
@@ -56,13 +66,13 @@ namespace Client
                 Console.WriteLine();
                 proxy.removeData(15);
                 Console.WriteLine();
-                proxy.createDatabase("moj otac.txt");
+                proxy.createDatabase("moj otac.txt", proxy.Credentials.ClientCertificate.Certificate);
                 Console.WriteLine();
                 //proxy.removeDatabase("moj otac");
 
-                proxy.archivateDatabase("cities.txt");
+                proxy.archivateDatabase("cities.txt", proxy.Credentials.ClientCertificate.Certificate);
                 Console.WriteLine();
-                proxy.archivateDatabase("asdasd");
+                proxy.archivateDatabase("asdasd", proxy.Credentials.ClientCertificate.Certificate);
             }
             
             Console.ReadLine();

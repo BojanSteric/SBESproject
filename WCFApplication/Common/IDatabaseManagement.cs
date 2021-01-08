@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace DataBase
     {
         [OperationContract]
         [FaultContract(typeof(DatabaseException))]
-        void createDatabase(string fileName);
+        void createDatabase(string fileName, X509Certificate cer);
 
         [OperationContract]
         [FaultContract(typeof(DatabaseException))]
@@ -20,11 +21,11 @@ namespace DataBase
 
         [OperationContract]
         [FaultContract(typeof(DatabaseException))]
-        void removeDatabase(string filename);
+        void removeDatabase(string filename, X509Certificate cer);
 
         [OperationContract]
         [FaultContract(typeof(DatabaseException))]
-        void archivateDatabase(string fileName);
+        void archivateDatabase(string fileName, X509Certificate cer);
 
         [OperationContract]
         [FaultContract(typeof(DatabaseException))]
