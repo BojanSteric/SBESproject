@@ -225,7 +225,7 @@ namespace Client
 
         public string[] loadAllDatabases()
         {
-            string[] files = new string[100];
+            string[] files;
             try
             {
                 files = factory.loadAllDatabases();
