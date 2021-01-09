@@ -13,27 +13,12 @@ namespace CertificateManager
 	{
 		public override void Validate(X509Certificate2 certificate)
 		{
+				string kompanija = certificate.SubjectName.Name.Split(',')[2].Substring(3);
 
-			
-
-			if (CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, Formatter.ParseName(WindowsIdentity.GetCurrent().Name)) != null)
-			{
-				X509Certificate2 crt = CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine,
-					Formatter.ParseName(WindowsIdentity.GetCurrent().Name));
-
-				if (!certificate.Issuer.Equals(crt.Issuer))
+				if (!certificate.Issuer.Equals(kompanija))
 				{
 					throw new Exception("Certificate is not from the valid issuer.");
 				}
-            }
-            else
-            {
-				
-				Console.WriteLine("Certificate for this user doensnt exist");
-            }
-
-			
-			
 		}
 	}
 }

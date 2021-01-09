@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using CertificateManager;
 using System.ServiceModel.Security;
-using CertificateManager;
 using System.Security.Principal;
 
 namespace Client
@@ -226,7 +225,7 @@ namespace Client
 
         public string[] loadAllDatabases()
         {
-            string[] files = new string[100];
+            string[] files;
             try
             {
                 files = factory.loadAllDatabases();
