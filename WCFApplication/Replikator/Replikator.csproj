@@ -46,14 +46,23 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReplikatorService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CertificateManager\CertificateManager.csproj">
+      <Project>{C70B7470-C6B4-4C34-A8D2-99370B82CABE}</Project>
+      <Name>CertificateManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\DataBase.csproj">
       <Project>{667AB615-50A5-41B3-9FD6-7FFDFAB75AA6}</Project>
       <Name>DataBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CryptographyManager\CryptographyManager.csproj">
+      <Project>{52C8F42D-3A93-4453-84D2-F5F2CC0F80D5}</Project>
+      <Name>CryptographyManager</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

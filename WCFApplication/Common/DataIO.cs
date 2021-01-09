@@ -13,7 +13,7 @@ namespace DataBase
     public class DataIO
     {
        //prosledis dictionary i fileName(sa ekstenzijom za sad)
-        public void SerializeToTxt(Dictionary<int, City> dictionary, string fileName)
+        public  void SerializeToTxt(Dictionary<int, City> dictionary, string fileName)
         {
             //ako je dictionary prazan, baci skip
             if (dictionary == null) { return; }
@@ -37,7 +37,7 @@ namespace DataBase
             }
         }
         //vraca ucitan dictionary (temp), parametar je samo ime fajla sa ekstenzijom
-        public Dictionary<int, City> DeserializeFromTxt(string fileName)
+        public  Dictionary<int, City> DeserializeFromTxt(string fileName)
         {
             Dictionary<int, City> temp = new Dictionary<int, City>();
 

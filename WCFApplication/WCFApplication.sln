@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30621.155
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1321
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{1E538480-48F5-4E44-A3C3-CF7FEBC31713}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Replikator", "Replikator\Replikator.csproj", "{4D7BBE75-0CFB-4BE9-BF8F-63068CD0C8B1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CertificateManager", "CertificateManager\CertificateManager.csproj", "{C70B7470-C6B4-4C34-A8D2-99370B82CABE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptographyManager", "CryptographyManager\CryptographyManager.csproj", "{52C8F42D-3A93-4453-84D2-F5F2CC0F80D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{C70B7470-C6B4-4C34-A8D2-99370B82CABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C70B7470-C6B4-4C34-A8D2-99370B82CABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C70B7470-C6B4-4C34-A8D2-99370B82CABE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52C8F42D-3A93-4453-84D2-F5F2CC0F80D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52C8F42D-3A93-4453-84D2-F5F2CC0F80D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52C8F42D-3A93-4453-84D2-F5F2CC0F80D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52C8F42D-3A93-4453-84D2-F5F2CC0F80D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

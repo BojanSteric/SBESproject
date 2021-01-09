@@ -1,9 +1,13 @@
-﻿using DataBase;
+﻿using CertificateManager;
+using CryptographyManager;
+using DataBase;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Principal;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +21,8 @@ namespace Service
         public DataIO serializer = new DataIO();
         public static Dictionary<int, City> CitiesDB = new Dictionary<int, City>();
         public string fileName = "";
-
+        public static IReplikator proxy = Program.UspostaviVezuSaReplikatorom();
+        public static string key = string.Empty;
         #region Modifier functions
         public void addData(int id, string region, string cityName, int year, double electricalEnergy, string uloga)
         {
@@ -99,7 +104,13 @@ namespace Service
             if (File.Exists(fileName))     //ako postoji fajl koji zelimo da arhiviramo
             {
                 File.Copy(fileName, Directory.GetCurrentDirectory() + "\\Archive\\" + archiveFile);    /*kopiraj zeljeni fajl u fajl za arhivnim */
-                File.Copy(fileName, Directory.GetCurrentDirectory() + " - Copy\\Archive\\" + archiveFile);    /* imenom i smesti ga u archive folder*/
+                //File.Copy(fileName, Directory.GetCurrentDirectory() + " - Copy\\Archive\\" + archiveFile);    /* imenom i smesti ga u archive folder*/
+                Debugger.Launch();
+                string signCertCn = Formatter.ParseName(WindowsIdentity.GetCurrent().Name).Substring(0, 3) + "S"; //CertCn + "S_sign"; // digitalni potpis od server je 'serS'
+                X509Certificate2 signCer = CertificateManager.CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, signCertCn);
+                byte[] sifrovano = CryptographyManager.EncryptDecryptManager.EncrypthFile(fileName, "ne radi upis", key);
+                byte[] potpis = CryptographyManager.DigitalSignature.Create(sifrovano, signCer);
+                proxy.Archive(sifrovano,potpis);
             }
             else
             {
@@ -292,7 +303,7 @@ namespace Service
             }
         }
 
-        public Dictionary<int, City> DownloadDatabase(string token)
+        public  Dictionary<int, City> DownloadDatabase(string token)
         {
             return CitiesDB;
         }

@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using CertificateManager;
 using System.ServiceModel.Security;
-using CertificateManager;
 using System.Security.Principal;
 
 namespace Client

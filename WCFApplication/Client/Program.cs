@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
@@ -13,8 +14,7 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            string servCert = "serverser";
-
+            string servCert = "server";
             NetTcpBinding binding = new NetTcpBinding();
             string address = "net.tcp://localhost:9000/Service";
             binding.Security.Mode = SecurityMode.Transport;
@@ -45,33 +45,34 @@ namespace Client
 
 
                 //pozivi funkcija, cisto da vidimo dal rade
-                proxy.addData(1011, "pomoravlje", "pozarevac", 1999, 23.3, uloga);
-                Console.WriteLine();
-                proxy.addData(222, "podunavlje", "smederevo", 1800, 10, uloga);
-                Console.WriteLine();
-                proxy.averageForCity("pozarevac", uloga);
-                Console.WriteLine();
-                proxy.averageForRegion("ndzamena", uloga);
-                Console.WriteLine();
-                proxy.maxConsumerForRegion("pomoravlje", uloga);
-                Console.WriteLine();
-                proxy.maxConsumerForRegion("podunavlje", uloga);
-                Console.WriteLine();
-                proxy.maxConsumerForRegion("asdasd", uloga);
-                Console.WriteLine();
-                proxy.removeData(2, uloga);
-                Console.WriteLine();
-                proxy.addData(1, "test", "lele", 2002, 33.1, uloga);
-                Console.WriteLine();
-                proxy.modifyData(1, new DataBase.City(1, "ziza", "kriza", 2020, 55.6), uloga);
-                Console.WriteLine();
-                proxy.removeData(15, uloga);
-                Console.WriteLine();
-                proxy.createDatabase("moj otac.txt", uloga);
-                Console.WriteLine();
+                //proxy.addData(1011, "pomoravlje", "pozarevac", 1999, 23.3, uloga);
+                //Console.WriteLine();
+                //proxy.addData(222, "podunavlje", "smederevo", 1800, 10, uloga);
+                //Console.WriteLine();
+                //proxy.averageForCity("pozarevac", uloga);
+                //Console.WriteLine();
+                //proxy.averageForRegion("ndzamena", uloga);
+                //Console.WriteLine();
+                //proxy.maxConsumerForRegion("pomoravlje", uloga);
+                //Console.WriteLine();
+                //proxy.maxConsumerForRegion("podunavlje", uloga);
+                //Console.WriteLine();
+                //proxy.maxConsumerForRegion("asdasd", uloga);
+                //Console.WriteLine();
+                //proxy.removeData(2, uloga);
+                //Console.WriteLine();
+                //proxy.addData(1, "test", "lele", 2002, 33.1, uloga);
+                //Console.WriteLine();
+                //proxy.modifyData(1, new DataBase.City(1, "ziza", "kriza", 2020, 55.6), uloga);
+                //Console.WriteLine();
+                //proxy.removeData(15, uloga);
+                //Console.WriteLine();
+                //proxy.createDatabase("moj otac.txt", uloga);
+                //Console.WriteLine();
                 //proxy.removeDatabase("moj otac");
 
-                proxy.archivateDatabase("cities.txt", uloga);
+                //proxy.archivateDatabase("cities.txt", uloga);
+                proxy.archivateDatabase("proba.txt", uloga);
                 Console.WriteLine();
                 proxy.archivateDatabase("asdasd", uloga);
             }
