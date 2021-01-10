@@ -26,7 +26,7 @@ namespace Service
         #region Modifier functions
         public void addData(int id, string region, string cityName, int year, double electricalEnergy, string uloga)
         {
-            if (!uloga.Equals("writers"))
+            if (!(uloga.Equals("writers") || uloga.Equals("admins")))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
                 return;
@@ -47,7 +47,7 @@ namespace Service
         //basically update object if it exists and update database, ovo moze bolje ako se stave parametri umesto celog objekta, ali radi posao
         public void modifyData(int id, City city, string uloga)
         {
-            if (!uloga.Equals("writers"))
+            if (!(uloga.Equals("writers") || uloga.Equals("admins")))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
                 return;
@@ -67,7 +67,7 @@ namespace Service
         //obrisi podatak ako postoji i apdejtuj bazu
         public void removeData(int id, string uloga)
         {
-            if (!uloga.Equals("writers"))
+            if ((uloga.Equals("writers") || uloga.Equals("admins")))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
                 return;
@@ -160,7 +160,7 @@ namespace Service
         #region Reader functions
         public double averageForCity(string cityName, string uloga)
         {
-            if (!uloga.Equals("readers"))
+            if ((uloga.Equals("writers") || uloga.Equals("admins") || uloga.Equals("readers")))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
                 return -1;
@@ -191,7 +191,7 @@ namespace Service
         //averageForRegion je prakticno ista funkcija kao averageForCity, samo sto uzima regiju kao parametar
         public double averageForRegion(string region, string uloga)
         {
-            if (!uloga.Equals("readers"))
+            if (!(uloga.Equals("writers") || uloga.Equals("admins") || uloga.Equals("readers")))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
                 return -1;
@@ -224,7 +224,7 @@ namespace Service
         {
             
             List<City> max = new List<City>();
-            if (!uloga.Equals("readers"))
+            if (!(uloga.Equals("writers") || uloga.Equals("admins") || uloga.Equals("readers")))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
                 return max;
