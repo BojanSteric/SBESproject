@@ -18,7 +18,7 @@ namespace CryptographyManager
         public static byte[] Encrypt(byte[] plainBytes, X509Certificate2 cert)
         {
             RSACryptoServiceProvider publicKey = (RSACryptoServiceProvider)cert.PublicKey.Key;
-            publicKey.PersistKeyInCsp = false;
+            //publicKey.PersistKeyInCsp = false;
 
             // byte[] plainBytes = Convert.FromBase64String(plainText);
             byte[] encryptedBytes = publicKey.Encrypt(plainBytes, false);
