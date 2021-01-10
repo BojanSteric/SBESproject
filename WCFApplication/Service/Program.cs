@@ -68,6 +68,12 @@ namespace Service
                     byte[] sifrovano = CryptographyManager.EncryptDecryptManager.EncrypthFile(infile, outFile, kljuc);
                     byte[] potpis = CryptographyManager.DigitalSignature.Create(sifrovano, signCer);
                     replikator.SendData(sifrovano, potpis);
+                   
+                    //pogresan digitalni potpis. Mora biti instaliran i isto tako dodeljen nekom user-u
+                    //X509Certificate2 wrongCert = CertificateManager.CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, "wrong_sign");
+                    //byte[] pogresan_potpis = CryptographyManager.DigitalSignature.Create(sifrovani_kljuc, wrongCert);
+                    //replikator.SendData(sifrovano, pogresan_potpis);
+
                 }
                 Thread.Sleep(7000); //replikacija ide na svakih 7 sekundi
             }
