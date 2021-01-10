@@ -18,7 +18,7 @@ namespace Client
             NetTcpBinding binding = new NetTcpBinding();
             string address = "net.tcp://localhost:9000/Service";
             binding.Security.Mode = SecurityMode.Transport;
-            Debugger.Launch();
+            
             binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
             X509Certificate2 srvCert = CertificateManager.CertificateManager.GetCertificateFromStorage(StoreName.TrustedPeople, StoreLocation.LocalMachine, servCert);
             EndpointAddress endpointAddress = new EndpointAddress(new Uri(address), new X509CertificateEndpointIdentity(srvCert));
@@ -33,13 +33,13 @@ namespace Client
                 //proxy.Credentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindBySubjectName, servCert);
                 //proxy.Credentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindBySubjectName, servCert);
                 Console.WriteLine("izaberite bazu koju zelite da koristite:");
-               // proxy.loadAllDatabases();       //ucitaj i ispisi sve fajlove koji postoje u bazi
+                proxy.loadAllDatabases();       //ucitaj i ispisi sve fajlove koji postoje u bazi
                 string uloga = proxy.Uloga;
 
                 bool loaded = false;    //ovo je za ponavljanje odabira baze ako korisnik unese nesto sto ne postoji
                 do
                 {
-                    loaded = proxy.loadDb("test.txt");
+                    loaded = proxy.loadDb(Console.ReadLine());
                 } while (!loaded);
 
 
