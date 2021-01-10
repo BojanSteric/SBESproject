@@ -10,15 +10,15 @@ using System.Threading.Tasks;
 namespace CertificateManager
 {
     public class Validator : X509CertificateValidator
-	{
-		public override void Validate(X509Certificate2 certificate)
-		{
-				string kompanija = certificate.SubjectName.Name.Split(',')[2].Substring(3);
+    {
+        public override void Validate(X509Certificate2 certificate)
+        {
+            string kompanija = certificate.SubjectName.Name.Split(',')[2].Substring(3);
 
-				if (!certificate.Issuer.Equals(kompanija))
-				{
-					throw new Exception("Certificate is not from the valid issuer.");
-				}
-		}
-	}
+            if (!certificate.Issuer.Equals(string.Format("CN={0}", kompanija)))
+            {
+                throw new Exception("Certificate is not from the valid issuer.");
+            }
+        }
+    }
 }

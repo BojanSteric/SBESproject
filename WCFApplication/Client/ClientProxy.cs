@@ -21,7 +21,7 @@ namespace Client
         public ClientProxy(NetTcpBinding binding, EndpointAddress address, string servCert) : base(binding, address)
         {
             // Credentials.Windows.AllowedImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Impersonation;
-            this.Credentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindBySubjectName, servCert);
+            this.Credentials.ClientCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindBySubjectName, Formatter.ParseName(WindowsIdentity.GetCurrent().Name));
 
             this.Credentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.Custom;
             this.Credentials.ServiceCertificate.Authentication.CustomCertificateValidator = new Validator();
@@ -225,7 +225,7 @@ namespace Client
 
         public string[] loadAllDatabases()
         {
-            string[] files;
+            string[] files = new string[100];
             try
             {
                 files = factory.loadAllDatabases();
