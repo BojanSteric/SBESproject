@@ -40,12 +40,12 @@ namespace Service
             host.Credentials.ClientCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
             host.Credentials.ServiceCertificate.Certificate = CertificateManager.CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cert);
 
-            ServiceSecurityAuditBehavior newAudit = new ServiceSecurityAuditBehavior();
-            newAudit.AuditLogLocation = AuditLogLocation.Application;
-            newAudit.ServiceAuthorizationAuditLevel = AuditLevel.SuccessOrFailure;
+            //ServiceSecurityAuditBehavior newAudit = new ServiceSecurityAuditBehavior();
+            //newAudit.AuditLogLocation = AuditLogLocation.Application;
+            //newAudit.ServiceAuthorizationAuditLevel = AuditLevel.SuccessOrFailure;
 
-            host.Description.Behaviors.Remove<ServiceSecurityAuditBehavior>();
-            host.Description.Behaviors.Add(newAudit);
+            //host.Description.Behaviors.Remove<ServiceSecurityAuditBehavior>();
+           // host.Description.Behaviors.Add(newAudit);
 
             host.Open();
             
