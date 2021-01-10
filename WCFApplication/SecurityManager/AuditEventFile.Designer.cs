@@ -61,6 +61,60 @@ namespace SecurityManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User {0} failed to add data {1}. Reason: {2}..
+        /// </summary>
+        internal static string addDataFailure {
+            get {
+                return ResourceManager.GetString("addDataFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} successfully added data {1}..
+        /// </summary>
+        internal static string addDataSuccess {
+            get {
+                return ResourceManager.GetString("addDataSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} failed to archive database {1}. Reason: {2}..
+        /// </summary>
+        internal static string archivateDatabaseFailure {
+            get {
+                return ResourceManager.GetString("archivateDatabaseFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} successfully archived database {1}..
+        /// </summary>
+        internal static string archivateDatabaseSuccess {
+            get {
+                return ResourceManager.GetString("archivateDatabaseSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archive Failure..
+        /// </summary>
+        internal static string ArchiveFailure {
+            get {
+                return ResourceManager.GetString("ArchiveFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archive Success..
+        /// </summary>
+        internal static string ArchiveSuccess {
+            get {
+                return ResourceManager.GetString("ArchiveSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User {0} is successfully authenticated..
         /// </summary>
         internal static string AuthenticationSuccess {
@@ -84,6 +138,240 @@ namespace SecurityManager {
         internal static string AuthorizationSuccess {
             get {
                 return ResourceManager.GetString("AuthorizationSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} failed to call averageForCity. Reason: {1}..
+        /// </summary>
+        internal static string averageForCityFailure {
+            get {
+                return ResourceManager.GetString("averageForCityFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} successfully called averageForCity..
+        /// </summary>
+        internal static string averageForCitySuccess {
+            get {
+                return ResourceManager.GetString("averageForCitySuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} failed to call averageForRegion. Reason: {1}..
+        /// </summary>
+        internal static string averageForRegionFailure {
+            get {
+                return ResourceManager.GetString("averageForRegionFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} successfully called averageForRegion..
+        /// </summary>
+        internal static string averageForRegionSuccess {
+            get {
+                return ResourceManager.GetString("averageForRegionSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} failed to create database {1}. Reason: {2}..
+        /// </summary>
+        internal static string createDatabaseFailure {
+            get {
+                return ResourceManager.GetString("createDatabaseFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} successfully created database {1}..
+        /// </summary>
+        internal static string createDatabaseSuccess {
+            get {
+                return ResourceManager.GetString("createDatabaseSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DownloadDatabase Failure..
+        /// </summary>
+        internal static string DownloadDatabaseFailure {
+            get {
+                return ResourceManager.GetString("DownloadDatabaseFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DownloadDatabase Success..
+        /// </summary>
+        internal static string DownloadDatabaseSuccess {
+            get {
+                return ResourceManager.GetString("DownloadDatabaseSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to loadAllDatabases Failure..
+        /// </summary>
+        internal static string loadAllDatabasesFailure {
+            get {
+                return ResourceManager.GetString("loadAllDatabasesFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to loadAllDatabases Success..
+        /// </summary>
+        internal static string loadAllDatabasesSuccess {
+            get {
+                return ResourceManager.GetString("loadAllDatabasesSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to loadDb Failure..
+        /// </summary>
+        internal static string loadDbFailure {
+            get {
+                return ResourceManager.GetString("loadDbFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to loadDb Success..
+        /// </summary>
+        internal static string loadDbSuccess {
+            get {
+                return ResourceManager.GetString("loadDbSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} failed to call maxConsumerForRegionSuccess. Reason: {1}..
+        /// </summary>
+        internal static string maxConsumerForRegionFailure {
+            get {
+                return ResourceManager.GetString("maxConsumerForRegionFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} successfully called maxConsumerForRegionSuccess..
+        /// </summary>
+        internal static string maxConsumerForRegionSuccess {
+            get {
+                return ResourceManager.GetString("maxConsumerForRegionSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} failed to modify data {1}. Reason: {2}..
+        /// </summary>
+        internal static string modifyDataFailure {
+            get {
+                return ResourceManager.GetString("modifyDataFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} successfully modified data {1}..
+        /// </summary>
+        internal static string modifyDataSuccess {
+            get {
+                return ResourceManager.GetString("modifyDataSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} failed to remove database {1}. Reason: {2}..
+        /// </summary>
+        internal static string removeDatabaseFailure {
+            get {
+                return ResourceManager.GetString("removeDatabaseFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} successfully removed database {1}..
+        /// </summary>
+        internal static string removeDatabaseSuccess {
+            get {
+                return ResourceManager.GetString("removeDatabaseSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} failed to remove data {1}. Reason: {2}..
+        /// </summary>
+        internal static string removeDataFailure {
+            get {
+                return ResourceManager.GetString("removeDataFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User {0} successfully removed data {1}..
+        /// </summary>
+        internal static string removeDataSuccess {
+            get {
+                return ResourceManager.GetString("removeDataSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SendData Failure..
+        /// </summary>
+        internal static string SendDataFailure {
+            get {
+                return ResourceManager.GetString("SendDataFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SendData Success..
+        /// </summary>
+        internal static string SendDataSuccess {
+            get {
+                return ResourceManager.GetString("SendDataSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SendKey Failure..
+        /// </summary>
+        internal static string SendKeyFailure {
+            get {
+                return ResourceManager.GetString("SendKeyFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SendKey Success..
+        /// </summary>
+        internal static string SendKeySuccess {
+            get {
+                return ResourceManager.GetString("SendKeySuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UploadDatabase Failure..
+        /// </summary>
+        internal static string UploadDatabaseFailure {
+            get {
+                return ResourceManager.GetString("UploadDatabaseFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UploadDatabase Success..
+        /// </summary>
+        internal static string UploadDatabaseSuccess {
+            get {
+                return ResourceManager.GetString("UploadDatabaseSuccess", resourceCulture);
             }
         }
     }

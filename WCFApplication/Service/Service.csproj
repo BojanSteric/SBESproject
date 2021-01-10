@@ -66,6 +66,10 @@
       <Project>{52C8F42D-3A93-4453-84D2-F5F2CC0F80D5}</Project>
       <Name>CryptographyManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SecurityManager\SecurityManager.csproj">
+      <Project>{d4b40954-eb3f-44f4-928e-3b3d5d5881b4}</Project>
+      <Name>SecurityManager</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

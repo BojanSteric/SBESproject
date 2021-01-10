@@ -52,7 +52,6 @@ namespace SecurityManager
                 Console.WriteLine(e.Message);
             }
 
-
             evaluationContext.Properties["Principal"] = new CustomPrincipal(windowsIdentity);
             return true;
         }

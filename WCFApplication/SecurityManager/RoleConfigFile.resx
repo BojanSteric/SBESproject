@@ -121,9 +121,9 @@
     <value>Read,Modify,Delete,Execute,Administrate</value>
   </data>
   <data name="readers" xml:space="preserve">
-    <value>read</value>
+    <value>Read</value>
   </data>
   <data name="writers" xml:space="preserve">
-    <value>read,modify,delete</value>
+    <value>Read,Modify,Delete</value>
   </data>
 </root>

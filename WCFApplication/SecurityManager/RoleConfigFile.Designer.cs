@@ -70,7 +70,7 @@ namespace SecurityManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to read.
+        ///   Looks up a localized string similar to Read.
         /// </summary>
         internal static string readers {
             get {
@@ -79,7 +79,7 @@ namespace SecurityManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to read,modify,delete.
+        ///   Looks up a localized string similar to Read,Modify,Delete.
         /// </summary>
         internal static string writers {
             get {

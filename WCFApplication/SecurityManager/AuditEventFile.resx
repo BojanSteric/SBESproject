@@ -117,6 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="addDataFailure" xml:space="preserve">
+    <value>User {0} failed to add data {1}. Reason: {2}.</value>
+  </data>
+  <data name="addDataSuccess" xml:space="preserve">
+    <value>User {0} successfully added data {1}.</value>
+  </data>
+  <data name="archivateDatabaseFailure" xml:space="preserve">
+    <value>User {0} failed to archive database {1}. Reason: {2}.</value>
+  </data>
+  <data name="archivateDatabaseSuccess" xml:space="preserve">
+    <value>User {0} successfully archived database {1}.</value>
+  </data>
+  <data name="ArchiveFailure" xml:space="preserve">
+    <value>Archive Failure.</value>
+  </data>
+  <data name="ArchiveSuccess" xml:space="preserve">
+    <value>Archive Success.</value>
+  </data>
   <data name="AuthenticationSuccess" xml:space="preserve">
     <value>User {0} is successfully authenticated.</value>
   </data>
@@ -125,5 +143,83 @@
   </data>
   <data name="AuthorizationSuccess" xml:space="preserve">
     <value>User {0} successfully accessed to {1}.</value>
+  </data>
+  <data name="averageForCityFailure" xml:space="preserve">
+    <value>User {0} failed to call averageForCity. Reason: {1}.</value>
+  </data>
+  <data name="averageForCitySuccess" xml:space="preserve">
+    <value>User {0} successfully called averageForCity.</value>
+  </data>
+  <data name="averageForRegionFailure" xml:space="preserve">
+    <value>User {0} failed to call averageForRegion. Reason: {1}.</value>
+  </data>
+  <data name="averageForRegionSuccess" xml:space="preserve">
+    <value>User {0} successfully called averageForRegion.</value>
+  </data>
+  <data name="createDatabaseFailure" xml:space="preserve">
+    <value>User {0} failed to create database {1}. Reason: {2}.</value>
+  </data>
+  <data name="createDatabaseSuccess" xml:space="preserve">
+    <value>User {0} successfully created database {1}.</value>
+  </data>
+  <data name="DownloadDatabaseFailure" xml:space="preserve">
+    <value>DownloadDatabase Failure.</value>
+  </data>
+  <data name="DownloadDatabaseSuccess" xml:space="preserve">
+    <value>DownloadDatabase Success.</value>
+  </data>
+  <data name="loadAllDatabasesFailure" xml:space="preserve">
+    <value>loadAllDatabases Failure.</value>
+  </data>
+  <data name="loadAllDatabasesSuccess" xml:space="preserve">
+    <value>loadAllDatabases Success.</value>
+  </data>
+  <data name="loadDbFailure" xml:space="preserve">
+    <value>loadDb Failure.</value>
+  </data>
+  <data name="loadDbSuccess" xml:space="preserve">
+    <value>loadDb Success.</value>
+  </data>
+  <data name="maxConsumerForRegionFailure" xml:space="preserve">
+    <value>User {0} failed to call maxConsumerForRegionSuccess. Reason: {1}.</value>
+  </data>
+  <data name="maxConsumerForRegionSuccess" xml:space="preserve">
+    <value>User {0} successfully called maxConsumerForRegionSuccess.</value>
+  </data>
+  <data name="modifyDataFailure" xml:space="preserve">
+    <value>User {0} failed to modify data {1}. Reason: {2}.</value>
+  </data>
+  <data name="modifyDataSuccess" xml:space="preserve">
+    <value>User {0} successfully modified data {1}.</value>
+  </data>
+  <data name="removeDatabaseFailure" xml:space="preserve">
+    <value>User {0} failed to remove database {1}. Reason: {2}.</value>
+  </data>
+  <data name="removeDatabaseSuccess" xml:space="preserve">
+    <value>User {0} successfully removed database {1}.</value>
+  </data>
+  <data name="removeDataFailure" xml:space="preserve">
+    <value>User {0} failed to remove data {1}. Reason: {2}.</value>
+  </data>
+  <data name="removeDataSuccess" xml:space="preserve">
+    <value>User {0} successfully removed data {1}.</value>
+  </data>
+  <data name="SendDataFailure" xml:space="preserve">
+    <value>SendData Failure.</value>
+  </data>
+  <data name="SendDataSuccess" xml:space="preserve">
+    <value>SendData Success.</value>
+  </data>
+  <data name="SendKeyFailure" xml:space="preserve">
+    <value>SendKey Failure.</value>
+  </data>
+  <data name="SendKeySuccess" xml:space="preserve">
+    <value>SendKey Success.</value>
+  </data>
+  <data name="UploadDatabaseFailure" xml:space="preserve">
+    <value>UploadDatabase Failure.</value>
+  </data>
+  <data name="UploadDatabaseSuccess" xml:space="preserve">
+    <value>UploadDatabase Success.</value>
   </data>
 </root>

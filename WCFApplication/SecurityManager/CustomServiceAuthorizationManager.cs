@@ -21,7 +21,7 @@ namespace SecurityManager
                 try
                 {
                     Audit.AuthorizationFailed(Formatter.ParseName(principal.Identity.Name),
-                        OperationContext.Current.IncomingMessageHeaders.Action, "Need Read permission.");
+                        OperationContext.Current.IncomingMessageHeaders.Action, "Needs Read permission.");
                 }
                 catch (Exception e)
                 {
