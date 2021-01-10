@@ -110,7 +110,7 @@ namespace Service
                 X509Certificate2 signCer = CertificateManager.CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, signCertCn);
                 byte[] sifrovano = CryptographyManager.EncryptDecryptManager.EncrypthFile(fileName, "ne radi upis", key);
                 byte[] potpis = CryptographyManager.DigitalSignature.Create(sifrovano, signCer);
-                proxy.Archive(sifrovano,potpis);
+                proxy.Archive(sifrovano, potpis);
             }
             else
             {
@@ -222,7 +222,7 @@ namespace Service
 
         public List<City> maxConsumerForRegion(string region, string uloga)
         {
-            
+
             List<City> max = new List<City>();
             if (!(uloga.Equals("writers") || uloga.Equals("admins") || uloga.Equals("readers")))
             {
@@ -285,7 +285,8 @@ namespace Service
         {
             string[] files = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.txt");  //svi txt fajlovi u debug folderu sa sve lokacijom
 
-            for (int i = 0; i < files.Count(); i++) {           //iseci lokaciju fajla, samo pokazi ime i ekstenziju
+            for (int i = 0; i < files.Count(); i++)
+            {           //iseci lokaciju fajla, samo pokazi ime i ekstenziju
                 string[] temp = files[i].Split('\\');
                 files[i] = temp.Last();
             }
@@ -303,7 +304,7 @@ namespace Service
             }
         }
 
-        public  Dictionary<int, City> DownloadDatabase(string token)
+        public Dictionary<int, City> DownloadDatabase(string token)
         {
             return CitiesDB;
         }
