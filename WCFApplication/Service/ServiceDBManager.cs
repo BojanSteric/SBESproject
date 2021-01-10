@@ -30,7 +30,7 @@ namespace Service
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
                 throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
-                return;
+                
             }
 
             if (!CitiesDB.ContainsKey(id))  //ako ne postoji podatak sa id-em, dodaj ga i apdejtuj bazu (fajl)
@@ -52,7 +52,7 @@ namespace Service
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
                 throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
-                return;
+                
             }
 
             if (CitiesDB.ContainsKey(id))
@@ -69,11 +69,11 @@ namespace Service
         //obrisi podatak ako postoji i apdejtuj bazu
         public void removeData(int id, string uloga)
         {
-            if ((uloga.Equals("writers") || uloga.Equals("admins")))
+            if (!(uloga.Equals("writers") || uloga.Equals("admins")))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
                 throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
-                return;
+                
             }
 
             if (CitiesDB.ContainsKey(id))
@@ -95,7 +95,7 @@ namespace Service
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
                 throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
-                return;
+                
             }
 
             string archiveFile = String.Format("{0} {1}.txt", fileName, DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss"));  //formira string za arhivni fajl
@@ -129,7 +129,7 @@ namespace Service
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
                 throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
-                return;
+                
             }
 
             if (!File.Exists(fileName))
@@ -149,7 +149,7 @@ namespace Service
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
                 throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
-                return;
+                
             }
 
             if (File.Exists(filename))
@@ -166,11 +166,11 @@ namespace Service
         #region Reader functions
         public double averageForCity(string cityName, string uloga)
         {
-            if ((uloga.Equals("writers") || uloga.Equals("admins") || uloga.Equals("readers")))
+            if (!(uloga.Equals("writers") || uloga.Equals("admins") || uloga.Equals("readers")))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
                 throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
-                return -1;
+                
             }
 
             double result = 0;
@@ -202,7 +202,7 @@ namespace Service
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
                 throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
-                return -1;
+                
             }
 
             double result = 0;
@@ -236,7 +236,7 @@ namespace Service
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
                 throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
-                return max;
+                
             }
             try
             {
