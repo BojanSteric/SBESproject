@@ -63,7 +63,7 @@ namespace Service
                 Dictionary<int, City> baza = ServiceDBManager.CitiesDB;
                 if (baza.Count > 0) // ako ima podataka repliciraj
                 {
-                    Debugger.Launch();
+                    //Debugger.Launch();
                     serializer.SerializeToTxt(baza, infile);
                     byte[] sifrovano = CryptographyManager.EncryptDecryptManager.EncrypthFile(infile, outFile, kljuc);
                     byte[] potpis = CryptographyManager.DigitalSignature.Create(sifrovano, signCer);
