@@ -29,6 +29,7 @@ namespace Service
             if (!(uloga.Equals("writers") || uloga.Equals("admins")))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
+                throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
                 return;
             }
 
@@ -50,6 +51,7 @@ namespace Service
             if (!(uloga.Equals("writers") || uloga.Equals("admins")))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
+                throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
                 return;
             }
 
@@ -70,6 +72,7 @@ namespace Service
             if ((uloga.Equals("writers") || uloga.Equals("admins")))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
+                throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
                 return;
             }
 
@@ -91,6 +94,7 @@ namespace Service
             if (!uloga.Equals("admins"))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
+                throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
                 return;
             }
 
@@ -124,6 +128,7 @@ namespace Service
             if (!uloga.Equals("admins"))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
+                throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
                 return;
             }
 
@@ -143,6 +148,7 @@ namespace Service
             if (!uloga.Equals("admins"))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
+                throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
                 return;
             }
 
@@ -163,6 +169,7 @@ namespace Service
             if ((uloga.Equals("writers") || uloga.Equals("admins") || uloga.Equals("readers")))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
+                throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
                 return -1;
             }
 
@@ -194,6 +201,7 @@ namespace Service
             if (!(uloga.Equals("writers") || uloga.Equals("admins") || uloga.Equals("readers")))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
+                throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
                 return -1;
             }
 
@@ -227,6 +235,7 @@ namespace Service
             if (!(uloga.Equals("writers") || uloga.Equals("admins") || uloga.Equals("readers")))
             {
                 Console.WriteLine("Client tried operation he does not have permission for.");
+                throw new FaultException<DatabaseException>(new DatabaseException("No permission for that"));
                 return max;
             }
             try
