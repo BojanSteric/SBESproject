@@ -24,7 +24,8 @@ namespace Service
         public static IReplikator proxy = Program.UspostaviVezuSaReplikatorom();
         public static string key = string.Empty;
         #region Modifier functions
-        public void addData(int id, string region, string cityName, int year, double electricalEnergy, string uloga)
+        public void addData(int id, string region, string cityName, int year, double electricalEnergy, string 
+            )
         {
             if (!(uloga.Equals("writers") || uloga.Equals("admins")))
             {
