@@ -109,7 +109,6 @@ namespace Service
             {
                 File.Copy(fileName, Directory.GetCurrentDirectory() + "\\Archive\\" + archiveFile);    /*kopiraj zeljeni fajl u fajl za arhivnim */
                 //File.Copy(fileName, Directory.GetCurrentDirectory() + " - Copy\\Archive\\" + archiveFile);    /* imenom i smesti ga u archive folder*/
-                Debugger.Launch();
                 string signCertCn = Formatter.ParseName(WindowsIdentity.GetCurrent().Name).Substring(0, 3) + "S"; //CertCn + "S_sign"; // digitalni potpis od server je 'serS'
                 X509Certificate2 signCer = CertificateManager.CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, signCertCn);
                 byte[] sifrovano = CryptographyManager.EncryptDecryptManager.EncrypthFile(fileName, "ne radi upis", key);
